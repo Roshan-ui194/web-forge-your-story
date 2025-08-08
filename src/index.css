@@ -1,118 +1,69 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 240 5% 6%;
-    --popover-foreground: 0 0% 98%;
-
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
     --primary: 252 78% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 4% 16%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 240 5% 16%;
-    --muted-foreground: 240 5% 64%;
-
-    --accent: 252 78% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 6% 20%;
-    --input: 240 6% 20%;
-    --ring: 252 78% 60%;
-
-    --radius: 0.75rem;
-
-    /* Analytics Platform Custom Colors */
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --radius: 0.5rem;
     --analytics-primary: 252 78% 60%;
     --analytics-secondary: 268 83% 58%;
-    --analytics-accent: 221 83% 53%;
+    --analytics-accent: 280 89% 60%;
     --analytics-success: 142 76% 36%;
     --analytics-warning: 38 92% 50%;
-    --analytics-chart-1: 252 78% 60%;
-    --analytics-chart-2: 268 83% 58%;
-    --analytics-chart-3: 221 83% 53%;
-    --analytics-chart-4: 142 76% 36%;
-    --analytics-chart-5: 38 92% 50%;
-
-    /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(252 78% 60%), hsl(268 83% 58%));
-    --gradient-hero: linear-gradient(135deg, hsl(240 10% 3.9%), hsl(252 78% 60% / 0.1));
-    --gradient-card: linear-gradient(145deg, hsl(240 5% 6%), hsl(240 6% 20% / 0.3));
-
-    /* Shadows */
-    --shadow-analytics: 0 25px 50px -12px hsl(252 78% 60% / 0.25);
-    --shadow-card: 0 10px 15px -3px hsl(240 10% 3.9% / 0.1);
-    --shadow-glow: 0 0 30px hsl(252 78% 60% / 0.3);
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --analytics-error: 0 84% 60%;
+    --chart-1: 252 78% 60%;
+    --chart-2: 268 83% 58%;
+    --chart-3: 280 89% 60%;
+    --chart-4: 142 76% 36%;
+    --chart-5: 38 92% 50%;
   }
 
-  .light {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
     --primary: 252 78% 60%;
-    --primary-foreground: 0 0% 98%;
-
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-
-    --muted: 240 5% 96%;
-    --muted-foreground: 240 4% 46%;
-
-    --accent: 252 78% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-
-    --border: 240 6% 90%;
-    --input: 240 6% 90%;
-    --ring: 252 78% 60%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 252 78% 60%;
+    --chart-2: 268 83% 58%;
+    --chart-3: 280 89% 60%;
+    --chart-4: 142 76% 36%;
+    --chart-5: 38 92% 50%;
   }
 }
 
@@ -120,8 +71,15 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
   }
+}
+
+.bg-gradient-card {
+  background: linear-gradient(135deg, hsl(var(--card)) 0%, hsl(var(--muted)) 100%);
+}
+
+.bg-gradient-hero {
+  background: linear-gradient(135deg, hsl(var(--analytics-primary)) 0%, hsl(var(--analytics-secondary)) 50%, hsl(var(--analytics-accent)) 100%);
 }
