@@ -5,7 +5,7 @@ import { Upload, FileSpreadsheet, X } from "lucide-react";
 import { toast } from "sonner";
 
 interface FileUploadProps {
-  onFileUpload?: (file: File) => void;
+  onFileUpload?: (file: File, data: any[]) => void;
 }
 
 export const FileUpload = ({ onFileUpload }: FileUploadProps) => {
@@ -33,7 +33,7 @@ export const FileUpload = ({ onFileUpload }: FileUploadProps) => {
       console.log("File dropped:", file.name, file.type);
       if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls') || file.type.includes('spreadsheet')) {
         setUploadedFile(file);
-        onFileUpload?.(file);
+        processExcelFile(file);
         toast.success("File uploaded successfully!");
       } else {
         toast.error("Please upload an Excel file (.xlsx or .xls)");
@@ -48,13 +48,30 @@ export const FileUpload = ({ onFileUpload }: FileUploadProps) => {
       console.log("File selected:", file.name, file.type);
       if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls') || file.type.includes('spreadsheet')) {
         setUploadedFile(file);
-        onFileUpload?.(file);
+        processExcelFile(file);
         toast.success("File uploaded successfully!");
       } else {
         toast.error("Please upload an Excel file (.xlsx or .xls)");
       }
     }
-  }, [onFileUpload]);
+  }, []);
+
+  const processExcelFile = async (file: File) => {
+    try {
+      const XLSX = await import('xlsx');
+      const arrayBuffer = await file.arrayBuffer();
+      const workbook = XLSX.read(arrayBuffer, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+      const data = XLSX.utils.sheet_to_json(worksheet);
+      
+      console.log("Excel data processed:", data);
+      onFileUpload?.(file, data);
+    } catch (error) {
+      console.error("Error processing Excel file:", error);
+      toast.error("Error processing Excel file");
+    }
+  };
 
   const removeFile = () => {
     setUploadedFile(null);

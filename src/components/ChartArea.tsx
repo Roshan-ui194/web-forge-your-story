@@ -25,6 +25,11 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+interface ChartAreaProps {
+  data?: any[];
+  onGenerateAISummary?: () => void;
+}
+
 const sampleData = [
   { quarter: "Q1", revenue: 65000, expenses: 45000, profit: 20000 },
   { quarter: "Q2", revenue: 85000, expenses: 55000, profit: 30000 },
@@ -49,42 +54,49 @@ const chartConfig = {
 
 const COLORS = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
 
-export const ChartArea = () => {
+export const ChartArea = ({ data, onGenerateAISummary }: ChartAreaProps) => {
   const [chartType, setChartType] = useState<'bar' | 'line' | 'pie'>('bar');
   const [xAxis, setXAxis] = useState('quarter');
   const [yAxis, setYAxis] = useState('revenue');
+  
+  const chartData = data && data.length > 0 ? data : sampleData;
+  const availableKeys = chartData.length > 0 ? Object.keys(chartData[0]) : ['quarter', 'revenue', 'expenses'];
+  const numericKeys = availableKeys.filter(key => 
+    chartData.some(item => typeof item[key] === 'number')
+  );
+  const textKeys = availableKeys.filter(key => 
+    chartData.some(item => typeof item[key] === 'string')
+  );
 
   const renderBarChart = () => (
     <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-      <BarChart data={sampleData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="quarter" />
+        <XAxis dataKey={xAxis} />
         <YAxis />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Bar dataKey="revenue" fill="var(--color-revenue)" />
-        <Bar dataKey="expenses" fill="var(--color-expenses)" />
+        <Bar dataKey={yAxis} fill="hsl(var(--chart-1))" />
       </BarChart>
     </ChartContainer>
   );
 
   const renderLineChart = () => (
     <ChartContainer config={chartConfig} className="min-h-[400px] w-full">
-      <RechartsLineChart data={sampleData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+      <RechartsLineChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="quarter" />
+        <XAxis dataKey={xAxis} />
         <YAxis />
         <ChartTooltip content={<ChartTooltipContent />} />
         <ChartLegend content={<ChartLegendContent />} />
-        <Line type="monotone" dataKey="revenue" stroke="var(--color-revenue)" strokeWidth={2} />
-        <Line type="monotone" dataKey="expenses" stroke="var(--color-expenses)" strokeWidth={2} />
+        <Line type="monotone" dataKey={yAxis} stroke="hsl(var(--chart-1))" strokeWidth={2} />
       </RechartsLineChart>
     </ChartContainer>
   );
 
-  const pieData = sampleData.map((item) => ({
-    name: item.quarter,
-    value: item[yAxis as keyof typeof item] as number,
+  const pieData = chartData.map((item, index) => ({
+    name: item[xAxis] || `Item ${index + 1}`,
+    value: item[yAxis] as number,
   }));
 
   const renderPieChart = () => (
@@ -170,9 +182,9 @@ export const ChartArea = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="quarter">Quarter</SelectItem>
-                    <SelectItem value="month">Month</SelectItem>
-                    <SelectItem value="year">Year</SelectItem>
+                    {textKeys.map(key => (
+                      <SelectItem key={key} value={key}>{key}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -186,17 +198,28 @@ export const ChartArea = () => {
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="revenue">Revenue</SelectItem>
-                    <SelectItem value="expenses">Expenses</SelectItem>
-                    <SelectItem value="profit">Profit</SelectItem>
+                    {numericKeys.map(key => (
+                      <SelectItem key={key} value={key}>{key}</SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              <Button className="w-full" variant="outline">
-                <Download className="w-4 h-4 mr-2" />
-                Download Chart
-              </Button>
+              <div className="space-y-2">
+                <Button className="w-full" variant="outline">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download Chart
+                </Button>
+                {data && data.length > 0 && (
+                  <Button 
+                    className="w-full" 
+                    onClick={onGenerateAISummary}
+                    variant="default"
+                  >
+                    Generate AI Summary
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
 
