@@ -52,6 +52,20 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				analytics: {
+					primary: 'hsl(var(--analytics-primary))',
+					secondary: 'hsl(var(--analytics-secondary))',
+					accent: 'hsl(var(--analytics-accent))',
+					success: 'hsl(var(--analytics-success))',
+					warning: 'hsl(var(--analytics-warning))',
+					chart: {
+						1: 'hsl(var(--analytics-chart-1))',
+						2: 'hsl(var(--analytics-chart-2))',
+						3: 'hsl(var(--analytics-chart-3))',
+						4: 'hsl(var(--analytics-chart-4))',
+						5: 'hsl(var(--analytics-chart-5))',
+					}
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -67,6 +81,16 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-hero': 'var(--gradient-hero)',
+				'gradient-card': 'var(--gradient-card)',
+			},
+			boxShadow: {
+				'analytics': 'var(--shadow-analytics)',
+				'glow': 'var(--shadow-glow)',
+				'card': 'var(--shadow-card)',
 			},
 			keyframes: {
 				'accordion-down': {
