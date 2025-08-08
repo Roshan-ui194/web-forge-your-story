@@ -26,10 +26,12 @@ export const FileUpload = ({ onFileUpload }: FileUploadProps) => {
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
+    console.log("Drop event triggered");
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
       const file = e.dataTransfer.files[0];
-      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+      console.log("File dropped:", file.name, file.type);
+      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls') || file.type.includes('spreadsheet')) {
         setUploadedFile(file);
         onFileUpload?.(file);
         toast.success("File uploaded successfully!");
@@ -40,9 +42,11 @@ export const FileUpload = ({ onFileUpload }: FileUploadProps) => {
   }, [onFileUpload]);
 
   const handleFileInput = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("File input triggered");
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
-      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls')) {
+      console.log("File selected:", file.name, file.type);
+      if (file.name.endsWith('.xlsx') || file.name.endsWith('.xls') || file.type.includes('spreadsheet')) {
         setUploadedFile(file);
         onFileUpload?.(file);
         toast.success("File uploaded successfully!");

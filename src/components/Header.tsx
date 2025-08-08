@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { BarChart3, Upload, User } from "lucide-react";
+import { BarChart3, Upload } from "lucide-react";
+import { AuthDialog } from "./AuthDialog";
 
 export const Header = () => {
   return (
@@ -29,10 +30,7 @@ export const Header = () => {
             <Upload className="w-4 h-4 mr-2" />
             Upload
           </Button>
-          <Button size="sm">
-            <User className="w-4 h-4 mr-2" />
-            Sign In
-          </Button>
+          <AuthDialog />
         </div>
       </div>
     </header>
