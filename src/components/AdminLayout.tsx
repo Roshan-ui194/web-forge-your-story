@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   Home,
   Users,
@@ -31,44 +32,32 @@ const menuItems = [
   {
     title: "Dashboard Overview",
     url: "/admin",
-    icon: Home,
-    active: true
+    icon: Home
   },
   {
     title: "User Management",
     url: "/admin/users",
-    icon: Users,
-    active: false
+    icon: Users
   },
   {
     title: "File Uploads & Usage",
     url: "/admin/uploads",
-    icon: FolderOpen,
-    active: false
+    icon: FolderOpen
   },
   {
     title: "Chart Analytics",
     url: "/admin/analytics",
-    icon: BarChart3,
-    active: false
+    icon: BarChart3
   },
   {
     title: "System Settings",
     url: "/admin/settings",
-    icon: Settings,
-    active: false
+    icon: Settings
   },
   {
     title: "Support & Feedback",
     url: "/admin/support",
-    icon: HelpCircle,
-    active: false
-  },
-  {
-    title: "Other",
-    url: "/admin/other",
-    icon: MoreHorizontal,
-    active: false
+    icon: HelpCircle
   }
 ];
 
@@ -79,6 +68,12 @@ interface AdminLayoutProps {
 
 function AppSidebar() {
   const { state } = useSidebar();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavigation = (url: string) => {
+    navigate(url);
+  };
 
   return (
     <Sidebar className={state === "collapsed" ? "w-14" : "w-60"} collapsible="icon">
@@ -89,24 +84,28 @@ function AppSidebar() {
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton 
-                    asChild 
-                    className={`
-                      ${item.active 
-                        ? "bg-sidebar-primary text-sidebar-primary-foreground" 
-                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                      }
-                    `}
-                  >
-                    <a href={item.url} className="flex items-center gap-3 px-3 py-2">
-                      <item.icon className="h-4 w-4" />
-                      {state !== "collapsed" && <span>{item.title}</span>}
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {menuItems.map((item) => {
+                const isActive = location.pathname === item.url;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton 
+                      onClick={() => handleNavigation(item.url)}
+                      className={`
+                        cursor-pointer
+                        ${isActive 
+                          ? "bg-sidebar-primary text-sidebar-primary-foreground" 
+                          : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        }
+                      `}
+                    >
+                      <div className="flex items-center gap-3 px-3 py-2">
+                        <item.icon className="h-4 w-4" />
+                        {state !== "collapsed" && <span>{item.title}</span>}
+                      </div>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

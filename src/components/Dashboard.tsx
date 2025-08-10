@@ -6,56 +6,56 @@ import { FileSpreadsheet, BarChart3, Download, Calendar, TrendingUp } from "luci
 const recentAnalyses = [
   {
     id: 1,
-    fileName: "Q4_Sales_Report.xlsx",
-    chartType: "Bar Chart",
-    createdAt: "2024-01-15",
-    size: "2.3 MB",
+    fileName: "Sales_Performance_Q3.xlsx",
+    chartType: "Area Chart",
+    createdAt: "2024-08-09",
+    size: "4.2 MB",
     status: "completed"
   },
   {
     id: 2,
-    fileName: "Marketing_Data.xlsx", 
-    chartType: "Line Chart",
-    createdAt: "2024-01-14",
-    size: "1.8 MB",
+    fileName: "Customer_Analytics_Dashboard.xlsx", 
+    chartType: "Doughnut Chart",
+    createdAt: "2024-08-08",
+    size: "3.1 MB",
     status: "completed"
   },
   {
     id: 3,
-    fileName: "Financial_Overview.xlsx",
-    chartType: "Pie Chart", 
-    createdAt: "2024-01-13",
-    size: "3.1 MB",
+    fileName: "Marketing_ROI_Analysis.xlsx",
+    chartType: "Scatter Plot", 
+    createdAt: "2024-08-07",
+    size: "2.8 MB",
     status: "processing"
   }
 ];
 
 const stats = [
   {
-    title: "Total Uploads",
-    value: "24",
-    change: "+12%",
+    title: "Files Analyzed",
+    value: "47",
+    change: "+28%",
     icon: FileSpreadsheet,
     color: "analytics-primary"
   },
   {
-    title: "Charts Generated",
-    value: "18",
-    change: "+8%", 
+    title: "Charts Created",
+    value: "156",
+    change: "+15%", 
     icon: BarChart3,
     color: "analytics-secondary"
   },
   {
-    title: "Downloads",
-    value: "31",
-    change: "+23%",
+    title: "Insights Generated",
+    value: "89",
+    change: "+34%",
     icon: Download,
     color: "analytics-accent"
   },
   {
-    title: "Success Rate",
-    value: "96%",
-    change: "+2%",
+    title: "Processing Speed",
+    value: "98.5%",
+    change: "+4.2%",
     icon: TrendingUp,
     color: "analytics-success"
   }

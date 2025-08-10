@@ -11,26 +11,34 @@ interface UploadHistoryProps {
 const mockUploads = [
   {
     id: 1,
-    fileName: "sales_data_2024.xlsx",
-    fileSize: "2.1MB",
-    uploadDate: new Date(2024, 7, 1),
-    chartsCreated: 3,
+    fileName: "Revenue_Analysis_Q3_2024.xlsx",
+    fileSize: "5.3MB",
+    uploadDate: new Date(2024, 7, 9),
+    chartsCreated: 6,
     status: "completed"
   },
   {
     id: 2,
-    fileName: "customer_analytics.csv",
-    fileSize: "1.8MB", 
-    uploadDate: new Date(2024, 7, 15),
-    chartsCreated: 5,
+    fileName: "Marketing_Campaign_Performance.xlsx",
+    fileSize: "3.7MB", 
+    uploadDate: new Date(2024, 7, 8),
+    chartsCreated: 4,
     status: "completed"
   },
   {
     id: 3,
-    fileName: "financial_report.xlsx",
-    fileSize: "3.2MB",
-    uploadDate: new Date(2024, 8, 1),
-    chartsCreated: 2,
+    fileName: "Customer_Segmentation_Data.xlsx",
+    fileSize: "7.1MB",
+    uploadDate: new Date(2024, 7, 7),
+    chartsCreated: 8,
+    status: "completed"
+  },
+  {
+    id: 4,
+    fileName: "Inventory_Optimization_Report.xlsx",
+    fileSize: "4.2MB",
+    uploadDate: new Date(2024, 7, 6),
+    chartsCreated: 3,
     status: "processing"
   }
 ];
