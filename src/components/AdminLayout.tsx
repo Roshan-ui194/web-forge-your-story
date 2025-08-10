@@ -91,17 +91,15 @@ function AppSidebar() {
                     <SidebarMenuButton 
                       onClick={() => handleNavigation(item.url)}
                       className={`
-                        cursor-pointer
+                        cursor-pointer w-full
                         ${isActive 
                           ? "bg-sidebar-primary text-sidebar-primary-foreground" 
                           : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                         }
                       `}
                     >
-                      <div className="flex items-center gap-3 px-3 py-2">
-                        <item.icon className="h-4 w-4" />
-                        {state !== "collapsed" && <span>{item.title}</span>}
-                      </div>
+                      <item.icon className="h-4 w-4" />
+                      {state !== "collapsed" && <span>{item.title}</span>}
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 );
