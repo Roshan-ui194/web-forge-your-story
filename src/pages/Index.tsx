@@ -7,7 +7,7 @@ import { ChartArea } from "@/components/ChartArea";
 import { AISummary } from "@/components/AISummary";
 import { Dashboard } from "@/components/Dashboard";
 import { UploadHistory } from "@/components/UploadHistory";
-import { AdminDashboard } from "@/components/AdminDashboard";
+import AdminDashboard from "./admin/AdminDashboard";
 import { Card } from "@/components/ui/card";
 
 const Index = () => {
