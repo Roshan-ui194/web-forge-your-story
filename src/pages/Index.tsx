@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
@@ -13,6 +13,14 @@ const Index = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [excelData, setExcelData] = useState<any[] | null>(null);
   const [showAISummary, setShowAISummary] = useState(false);
+  const [activeTab, setActiveTab] = useState("upload");
+
+  useEffect(() => {
+    const hash = window.location.hash.substring(1);
+    if (hash && ["upload", "charts", "ai-summary", "history", "dashboard"].includes(hash)) {
+      setActiveTab(hash);
+    }
+  }, []);
 
   const handleFileUpload = (file: File, data: any[]) => {
     setUploadedFile(file);
@@ -30,7 +38,7 @@ const Index = () => {
       
       <div className="container mx-auto px-4 py-12">
 
-        <Tabs defaultValue="upload" className="w-full">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
           <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="upload">Upload</TabsTrigger>
             <TabsTrigger value="charts">Charts</TabsTrigger>

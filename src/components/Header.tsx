@@ -20,7 +20,7 @@ export const Header = () => {
           <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
             Analytics
           </a>
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#history" className="text-muted-foreground hover:text-foreground transition-colors">
             History
           </a>
         </nav>
