@@ -6,6 +6,7 @@ import { FileUpload } from "@/components/FileUpload";
 import { ChartArea } from "@/components/ChartArea";
 import { AISummary } from "@/components/AISummary";
 import { Dashboard } from "@/components/Dashboard";
+import { UploadHistory } from "@/components/UploadHistory";
 
 
 const Index = () => {
@@ -30,10 +31,11 @@ const Index = () => {
       <div className="container mx-auto px-4 py-12">
 
         <Tabs defaultValue="upload" className="w-full">
-          <TabsList className="grid w-full grid-cols-4 mb-8">
+          <TabsList className="grid w-full grid-cols-5 mb-8">
             <TabsTrigger value="upload">Upload</TabsTrigger>
             <TabsTrigger value="charts">Charts</TabsTrigger>
             <TabsTrigger value="ai-summary">AI Analysis</TabsTrigger>
+            <TabsTrigger value="history">History</TabsTrigger>
             <TabsTrigger value="dashboard">Dashboard</TabsTrigger>
           </TabsList>
           
@@ -49,6 +51,9 @@ const Index = () => {
             <AISummary data={excelData} isVisible={true} />
           </TabsContent>
           
+          <TabsContent value="history" className="mt-6">
+            <UploadHistory />
+          </TabsContent>
           
           <TabsContent value="dashboard" className="mt-6">
             <Dashboard />
