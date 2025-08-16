@@ -14,14 +14,17 @@ export const Header = () => {
         </div>
         
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#dashboard" className="text-muted-foreground hover:text-foreground transition-colors">
             Dashboard
           </a>
-          <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#charts" className="text-muted-foreground hover:text-foreground transition-colors">
             Analytics
           </a>
           <a href="#history" className="text-muted-foreground hover:text-foreground transition-colors">
             History
+          </a>
+          <a href="#upload" className="text-muted-foreground hover:text-foreground transition-colors">
+            Upload
           </a>
         </nav>
 
