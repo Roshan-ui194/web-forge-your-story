@@ -4,38 +4,43 @@ import { Button } from "@/components/ui/button";
 import { FileSpreadsheet, BarChart3, Download, Calendar, TrendingUp } from "lucide-react";
 
 
-const stats = [
-  {
-    title: "Files Analyzed",
-    value: "0",
-    change: "+0%",
-    icon: FileSpreadsheet,
-    color: "analytics-primary"
-  },
-  {
-    title: "Charts Created",
-    value: "0",
-    change: "+0%", 
-    icon: BarChart3,
-    color: "analytics-secondary"
-  },
-  {
-    title: "Insights Generated",
-    value: "0",
-    change: "+0%",
-    icon: Download,
-    color: "analytics-accent"
-  },
-  {
-    title: "Processing Speed",
-    value: "98.5%",
-    change: "+4.2%",
-    icon: TrendingUp,
-    color: "analytics-success"
-  }
-];
+interface DashboardProps {
+  filesAnalyzed: number;
+  chartsCreated: number;
+  insightsGenerated: number;
+}
 
-export const Dashboard = () => {
+export const Dashboard = ({ filesAnalyzed, chartsCreated, insightsGenerated }: DashboardProps) => {
+  const stats = [
+    {
+      title: "Files Analyzed",
+      value: filesAnalyzed.toString(),
+      change: "+0%",
+      icon: FileSpreadsheet,
+      color: "analytics-primary"
+    },
+    {
+      title: "Charts Created",
+      value: chartsCreated.toString(),
+      change: "+0%", 
+      icon: BarChart3,
+      color: "analytics-secondary"
+    },
+    {
+      title: "Insights Generated",
+      value: insightsGenerated.toString(),
+      change: "+0%",
+      icon: Download,
+      color: "analytics-accent"
+    },
+    {
+      title: "Processing Speed",
+      value: "98.5%",
+      change: "+4.2%",
+      icon: TrendingUp,
+      color: "analytics-success"
+    }
+  ];
   return (
     <div className="space-y-8">
       <div className="text-center">

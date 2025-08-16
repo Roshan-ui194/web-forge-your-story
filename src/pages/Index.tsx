@@ -14,6 +14,9 @@ const Index = () => {
   const [excelData, setExcelData] = useState<any[] | null>(null);
   const [showAISummary, setShowAISummary] = useState(false);
   const [activeTab, setActiveTab] = useState("upload");
+  const [filesAnalyzed, setFilesAnalyzed] = useState(0);
+  const [chartsCreated, setChartsCreated] = useState(0);
+  const [insightsGenerated, setInsightsGenerated] = useState(0);
 
   useEffect(() => {
     const hash = window.location.hash.substring(1);
@@ -25,10 +28,16 @@ const Index = () => {
   const handleFileUpload = (file: File, data: any[]) => {
     setUploadedFile(file);
     setExcelData(data);
+    setFilesAnalyzed(prev => prev + 1);
+  };
+
+  const handleChartCreated = () => {
+    setChartsCreated(prev => prev + 1);
   };
 
   const handleGenerateAISummary = () => {
     setShowAISummary(true);
+    setInsightsGenerated(prev => prev + 1);
   };
 
   return (
@@ -52,7 +61,7 @@ const Index = () => {
           </TabsContent>
           
           <TabsContent value="charts" className="mt-6">
-            <ChartArea data={excelData} />
+            <ChartArea data={excelData} onChartCreated={handleChartCreated} />
           </TabsContent>
           
           <TabsContent value="ai-summary" className="mt-6">
@@ -64,7 +73,11 @@ const Index = () => {
           </TabsContent>
           
           <TabsContent value="dashboard" className="mt-6">
-            <Dashboard />
+            <Dashboard 
+              filesAnalyzed={filesAnalyzed}
+              chartsCreated={chartsCreated}
+              insightsGenerated={insightsGenerated}
+            />
           </TabsContent>
         </Tabs>
       </div>

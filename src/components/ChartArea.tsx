@@ -32,6 +32,7 @@ import {
 interface ChartAreaProps {
   data?: any[];
   onGenerateAISummary?: () => void;
+  onChartCreated?: () => void;
 }
 
 const sampleData = [
@@ -60,10 +61,25 @@ const chartConfig = {
 
 const COLORS = ["hsl(var(--chart-1))", "hsl(var(--chart-2))", "hsl(var(--chart-3))", "hsl(var(--chart-4))"];
 
-export const ChartArea = ({ data, onGenerateAISummary }: ChartAreaProps) => {
+export const ChartArea = ({ data, onGenerateAISummary, onChartCreated }: ChartAreaProps) => {
   const [chartType, setChartType] = useState<'bar' | 'line' | 'pie' | 'area' | 'scatter' | 'doughnut'>('bar');
   const [xAxis, setXAxis] = useState('month');
   const [yAxis, setYAxis] = useState('sales');
+  
+  const handleChartTypeChange = (value: 'bar' | 'line' | 'pie' | 'area' | 'scatter' | 'doughnut') => {
+    setChartType(value);
+    onChartCreated?.();
+  };
+  
+  const handleXAxisChange = (value: string) => {
+    setXAxis(value);
+    onChartCreated?.();
+  };
+  
+  const handleYAxisChange = (value: string) => {
+    setYAxis(value);
+    onChartCreated?.();
+  };
   
   const chartData = data && data.length > 0 ? data : sampleData;
   const availableKeys = chartData.length > 0 ? Object.keys(chartData[0]) : ['month', 'sales', 'leads'];
@@ -206,7 +222,7 @@ export const ChartArea = ({ data, onGenerateAISummary }: ChartAreaProps) => {
                 <label className="text-sm font-medium text-muted-foreground mb-2 block">
                   Chart Type
                 </label>
-                <Select value={chartType} onValueChange={(value: 'bar' | 'line' | 'pie' | 'area' | 'scatter' | 'doughnut') => setChartType(value)}>
+                <Select value={chartType} onValueChange={handleChartTypeChange}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -255,7 +271,7 @@ export const ChartArea = ({ data, onGenerateAISummary }: ChartAreaProps) => {
                 <label className="text-sm font-medium text-muted-foreground mb-2 block">
                   X-Axis
                 </label>
-                <Select value={xAxis} onValueChange={setXAxis}>
+                <Select value={xAxis} onValueChange={handleXAxisChange}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -271,7 +287,7 @@ export const ChartArea = ({ data, onGenerateAISummary }: ChartAreaProps) => {
                 <label className="text-sm font-medium text-muted-foreground mb-2 block">
                   Y-Axis
                 </label>
-                <Select value={yAxis} onValueChange={setYAxis}>
+                <Select value={yAxis} onValueChange={handleYAxisChange}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
