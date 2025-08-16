@@ -23,9 +23,6 @@ export const Header = () => {
           <a href="#history" className="text-muted-foreground hover:text-foreground transition-colors">
             History
           </a>
-          <a href="#upload" className="text-muted-foreground hover:text-foreground transition-colors">
-            Upload
-          </a>
         </nav>
 
         <div className="flex items-center gap-3">
