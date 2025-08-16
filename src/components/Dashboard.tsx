@@ -7,22 +7,22 @@ import { FileSpreadsheet, BarChart3, Download, Calendar, TrendingUp } from "luci
 const stats = [
   {
     title: "Files Analyzed",
-    value: "47",
-    change: "+28%",
+    value: "0",
+    change: "+0%",
     icon: FileSpreadsheet,
     color: "analytics-primary"
   },
   {
     title: "Charts Created",
-    value: "156",
-    change: "+15%", 
+    value: "0",
+    change: "+0%", 
     icon: BarChart3,
     color: "analytics-secondary"
   },
   {
     title: "Insights Generated",
-    value: "89",
-    change: "+34%",
+    value: "0",
+    change: "+0%",
     icon: Download,
     color: "analytics-accent"
   },
